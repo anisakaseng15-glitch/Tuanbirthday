@@ -798,7 +798,16 @@
             createClickConfetti({ clientX: window.innerWidth/2, clientY: 150 }, 15);
         }
 
+        let firstInteraction = true;
         document.addEventListener('click', (e) => {
+            // ให้เพลงเริ่มเล่นอัตโนมัติทันทีที่มีการแตะหน้าจอครั้งแรก
+            if (firstInteraction) {
+                firstInteraction = false;
+                if (!isPlaying) {
+                    toggleMusic();
+                }
+            }
+
             if (e.target.tagName !== 'BUTTON' && !e.target.closest('button') && !e.target.closest('input') && !e.target.closest('textarea')) {
                 createClickConfetti(e, 3);
             }
